@@ -1,9 +1,15 @@
 <template>
-  <Tutorial />
+  <div>
+    <h1>Events</h1>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'IndexPage',
+export default{
+  head(){
+    return {
+      title: 'Event Listing',
+    }
+  }
 }
 </script>
