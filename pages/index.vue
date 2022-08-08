@@ -16,22 +16,20 @@ export default {
   components: {
     EventCard,
   },
-  asyncData({ $axios, error }) {
-    return $axios
-      .get(
+  async asyncData({ $axios, error }) {
+    try {
+      const { data } = await $axios.get(
         'https://my-json-server.typicode.com/Code-Pop/Touring-Vue-Router/events'
       )
-      .then((response) => {
-        return {
-          events: response.data,
-        }
+      return {
+        events: data,
+      }
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch events at this time. Please try again',
       })
-      .catch(e => {
-        error({
-          statusCode: 503,
-          message: 'Unable to fetch events at this time. Please try again',
-        })
-      })
+    }
   },
   head() {
     return {
