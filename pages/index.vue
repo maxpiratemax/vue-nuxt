@@ -19,7 +19,7 @@ export default {
   asyncData({ $axios, error }) {
     return $axios
       .get(
-        'https://my-json-server.typicode./Code-Pop/Touring-Vue-Router/events'
+        'https://my-json-server.typicode.com/Code-Pop/Touring-Vue-Router/events'
       )
       .then((response) => {
         return {
