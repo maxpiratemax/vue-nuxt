@@ -11,20 +11,26 @@
 </template>
 
 <script>
-import EventCard from '@/components/EventCard.vue';
+import EventCard from '@/components/EventCard.vue'
 export default {
-  components:{
-    EventCard
+  components: {
+    EventCard,
   },
-  asyncData({ $axios }) {
+  asyncData({ $axios, error }) {
     return $axios
       .get(
-        'https://my-json-server.typicode.com/Code-Pop/Touring-Vue-Router/events'
+        'https://my-json-server.typicode./Code-Pop/Touring-Vue-Router/events'
       )
       .then((response) => {
         return {
           events: response.data,
         }
+      })
+      .catch(e => {
+        error({
+          statusCode: 503,
+          message: 'Unable to fetch events at this time. Please try again',
+        })
       })
   },
   head() {
