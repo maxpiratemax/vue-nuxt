@@ -1,33 +1,30 @@
 <template>
   <div>
     <h1>Events</h1>
-    <event-card
+
+    <EventCard
       v-for="(event, index) in events"
-      :key="event.id"
+      :key="index"
       :event="event"
       :data-index="index"
     />
   </div>
 </template>
-
 <script>
+import { mapState } from 'vuex'
 import EventCard from '@/components/EventCard.vue'
+
 export default {
   components: {
     EventCard,
   },
-  async asyncData({ $axios, error }) {
+  async fetch({ store, error }) {
     try {
-      const { data } = await $axios.get(
-        'https://my-json-server.typicode.com/Code-Pop/Touring-Vue-Router/events'
-      )
-      return {
-        events: data,
-      }
+      await store.dispatch('events/fetchEvents')
     } catch (e) {
       error({
         statusCode: 503,
-        message: 'Unable to fetch events at this time. Please try again',
+        message: 'Unable to fetch events at this time. Please try again.',
       })
     }
   },
@@ -36,5 +33,9 @@ export default {
       title: 'Event Listing',
     }
   },
+
+  computed: mapState({
+    events: (state) => state.events.events,
+  }),
 }
 </script>

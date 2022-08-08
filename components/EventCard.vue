@@ -7,7 +7,7 @@
       <h4 class="title">
         {{ event.title }}
       </h4>
-      <span>Location: {{ event.location }}</span>
+      <span>{{ event.attendees.length }} attending</span>
     </div>
   </nuxt-link>
 </template>
