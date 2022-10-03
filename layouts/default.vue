@@ -13,7 +13,7 @@ export default {
   },
   head() {
     return {
-      titleTemplate: '%s - Real World Events',
+      titleTemplate: '%s - Nuxt.js',
       meta: [
         {
           hid: 'description',

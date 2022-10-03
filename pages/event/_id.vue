@@ -1,8 +1,9 @@
 <template>
   <div>
     <div class="event-header">
+      <img :src="`${event.image}`" alt="">
       <span class="eyebrow"> @{{ event.time }} on {{ parsedDate }} </span>
-      <h1 class="title"></h1>
+      <h1 class="title">{{event.title}}</h1>
       <h5>Organized by {{ event.organizer}}</h5>
       <h5>Category: {{ event.category }}</h5>
     </div>
@@ -109,5 +110,9 @@ export default {
 .list-group > .list-item {
   padding: 1em 0;
   border-bottom: solid 1px #e5e5e5;
+}
+h1 {
+  line-height: 1em;
+  color: #74be9e;
 }
 </style>

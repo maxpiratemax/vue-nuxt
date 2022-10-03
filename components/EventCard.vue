@@ -1,30 +1,35 @@
 <template>
   <nuxt-link :to="'/event/' + event.id">
-    <div class="-shadow">
-      <span class="eyebrow">
-        @{{ event.time }} on {{ parsedDate }}
-      </span>
-      <h4 class="title">
-        {{ event.title }}
-      </h4>
-      <span>{{ event.attendees.length }} attending</span>
-    </div>
+      <div
+        class="-shadow"
+        :style="`background-image: linear-gradient(to left, rgba(245, 246, 252, 0.8), rgba(255, 255, 255, 0.95)), url(${event.image}) ;
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    `"
+      >
+        <span class="eyebrow"> @{{ event.time }} on {{ parsedDate }} </span>
+        <h4 class="title">
+          {{ event.title }}
+        </h4>
+        <span>{{ event.attendees.length }} attending</span>
+      </div>
   </nuxt-link>
 </template>
 <script>
 export default {
-  name: 'EventCard',
+  name: "EventCard",
   props: {
     // eslint-disable-next-line vue/require-default-prop
-    event: Object
+    event: Object,
   },
   computed: {
     parsedDate() {
-      const eventDate = new Date(this.event.date)
-      return eventDate.toDateString()
-    }
-  }
-}
+      const eventDate = new Date(this.event.date);
+      return eventDate.toDateString();
+    },
+  },
+};
 </script>
 <style scoped>
 div {

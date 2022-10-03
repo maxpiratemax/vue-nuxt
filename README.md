@@ -1,4 +1,6 @@
-# vm-scaling-vue-with-nuxt
+# vue-nuxt
+
+Build: https://nuxt-p2bfnee7cm0au1wn.herokuapp.com/
 
 ## Build Setup
 
