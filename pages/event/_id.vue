@@ -1,11 +1,9 @@
 <template>
   <div>
     <div class="event-header">
-      <span class="eyebrow"> @{{ event.time }} on {{ event.date }} </span>
-      <h1 class="title">
-        {{ event.title }}
-      </h1>
-      <h5>Organized by {{ event.organizer ? event.organizer.name : '' }}</h5>
+      <span class="eyebrow"> @{{ event.time }} on {{ parsedDate }} </span>
+      <h1 class="title"></h1>
+      <h5>Organized by {{ event.organizer}}</h5>
       <h5>Category: {{ event.category }}</h5>
     </div>
 
@@ -25,12 +23,8 @@
       </span>
     </h2>
     <ul class="list-group">
-      <li
-        v-for="(attendee, index) in event.attendees"
-        :key="index"
-        class="list-item"
-      >
-        <b>{{ attendee.name }}</b>
+      <li v-for="(attendee, index) in event.attendees" :key="index" class="list-item">
+        <b>{{ attendee }}</b>
       </li>
     </ul>
   </div>
@@ -61,9 +55,16 @@ export default {
     }
   },
 
-  computed: mapState({
+  computed: {
+    ...mapState({
     event: (state) => state.events.event,
   }),
+    parsedDate() {
+      const eventDate = new Date(this.event.date)
+      return eventDate.toDateString()
+    }
+  }
+
 }
 </script>
 

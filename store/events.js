@@ -1,4 +1,4 @@
-import EventService from '@/services/EventService.js'
+import { supabase } from "@/services/supabase/init";
 export const state = () => ({
   events: [],
   event: {}
@@ -12,14 +12,20 @@ export const mutations = {
   }
 }
 export const actions = {
-  fetchEvents({ commit }) {
-    return EventService.getEvents().then(response => {
-      commit('SET_EVENTS', response.data)
-    })
+  async fetchEvents({ commit }) {
+    const { data: Events, error } = await supabase
+      .from('Events')
+      .select('*')
+      console.log(error)
+    return commit('SET_EVENTS', Events)
   },
-  fetchEvent({ commit }, id) {
-    return EventService.getEvent(id).then(response => {
-      commit('SET_EVENT', response.data)
-    })
+
+  async fetchEvent({ commit }, id) {
+    const { data: Events, error } = await supabase
+      .from('Events')
+      .select('*')
+      .eq('id', id)
+      console.log(error)
+    return commit('SET_EVENT', Events[0])
   }
 }
