@@ -41,7 +41,8 @@ body {
 }
 #app {
   box-sizing: border-box;
-  width: 500px;
+  max-width: 500px;
+  min-width: 320px;
   padding: 0 20px 20px;
   margin: 0 auto;
 }
